@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char *name;
+    int date;
+    char *task;
+} WeekDay;
+
+WeekDay* initializeCalendar() {
+    WeekDay *days = (WeekDay*)malloc(7 * sizeof(WeekDay));
+    if (!days) {
+        printf("Failed to allocate memory.\n");
+        exit(1);
+    }
+    return days;
+}
+
+void inputCalendar(WeekDay *days) {
+    for (int i = 0; i < 7; i++) {
+        days[i].name = (char*)malloc(25 * sizeof(char));
+        days[i].task = (char*)malloc(100 * sizeof(char));
+        if (!days[i].name || !days[i].task) {
+            printf("Memory allocation failed!\n");
+            exit(1);
+        }
+
+        printf("Day %d name: ", i + 1);
+        scanf("%s", days[i].name);
+
+        printf("Date for %s: ", days[i].name);
+        scanf("%d", &days[i].date);
+        getchar(); // clear buffer
+
+        printf("Activity for %s: ", days[i].name);
+        fgets(days[i].task, 100, stdin);
+    }
+}
+
+void showCalendar(WeekDay *days) {
+    printf("\n-------- WEEKLY PLANNER --------\n");
+    for (int i = 0; i < 7; i++) {
+        printf("%d. %s (%d): %s", i + 1, days[i].name, days[i].date,
+days[i].task);
+    }
+    printf("--------------------------------\n");
+}
+
+int main() {
+    WeekDay *calendar = initializeCalendar();
+    printf("Fill in your weekly calendar:\n\n");
+
+    inputCalendar(calendar);
+    showCalendar(calendar);
+
+    // Free memory
+    for (int i = 0; i < 7; i++) {
+        free(calendar[i].name);
+        free(calendar[i].task);
+    }
+    free(calendar);
+
+    return 0;
+}
