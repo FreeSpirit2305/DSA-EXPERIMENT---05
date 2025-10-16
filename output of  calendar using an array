@@ -1,0 +1,17 @@
+OUTPUT (Sample Run)
+Fill in your weekly calendar:
+
+Day 1 name: MONDAY
+Date for MONDAY: 1
+Activity for MONDAY: Study DSA
+
+Day 2 name: TUESDAY
+Date for TUESDAY: 2
+Activity for TUESDAY: Study OOP
+
+...
+-------- WEEKLY PLANNER --------
+1. MONDAY (1): Study DSA
+2. TUESDAY (2): Study OOP
+...
+--------------------------------
